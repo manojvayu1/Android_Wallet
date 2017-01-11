@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Android_Wallet</string>
+    <string name="title_activity_login">Sign in</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Member pin</string>
+    <string name="action_sign_in">GO</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="welcom_head_01">Locate</string>
+    <string name="welcom_content_01">Locate your position /\n Point to a specific locality.</string>
+    <string name="welcom_head_02">Explore</string>
+    <string name="welcom_content_02">Explore your life.</string>
+    <string name="welcom_head_03">Favourites</string>
+    <string name="welcom_content_03">Record your Favourites/ Bookmark stores</string>
+    <string name="welcom_head_04">Edit Excel spreadsheets</string>
+    <string name="welcom_content_04">Open, edit, and save Excel files - all within Sheets.</string>
+</resources>

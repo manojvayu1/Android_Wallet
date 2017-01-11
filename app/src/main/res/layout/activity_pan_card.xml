@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_aadhar_card"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context="wallet.vayu.com.android_wallet.activity.AadharCard_Activity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="16dp"
+        android:background="@drawable/pan_card_bg">
+
+        <ImageView
+            android:id="@+id/iv_aadhar"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_margin="24dp"
+            android:src="@drawable/india" />
+
+        <EditText
+            android:id="@+id/et_pan_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_toRightOf="@+id/iv_aadhar"
+            android:background="@drawable/border_color_aadhar"
+            android:hint="Pan number" />
+
+        <EditText
+            android:id="@+id/et_pan_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/et_pan_number"
+            android:layout_margin="16dp"
+            android:background="@drawable/border_color_aadhar"
+            android:hint="Pan name" />
+
+        <ImageView
+            android:id="@+id/iv_pan_profile"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_below="@+id/et_pan_name"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="16dp"
+            android:background="@drawable/border_color_aadhar" />
+
+        <TextView
+            android:id="@+id/tv_profile_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_pan_profile"
+            android:layout_centerHorizontal="true"
+            android:text="Tap to add profile pic" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_pan_done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="27dp"
+            android:elevation="6dp"
+            android:src="@mipmap/ic_done"
+            android:layout_alignParentBottom="true"
+            android:layout_alignEnd="@+id/et_pan_name" />
+
+        <TextView
+            android:id="@+id/skip_aad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="skip"
+            android:padding="16dp"
+            android:textColor="@color/colorPrimary"
+            android:layout_alignTop="@+id/fab_pan_done"
+            android:layout_alignStart="@+id/iv_aadhar" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
