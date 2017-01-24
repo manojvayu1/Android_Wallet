@@ -10,9 +10,9 @@
     <color name="color_2">#ededed</color>
     <color name="color_3">#DF000F</color>
     <color name="color_4">#DF000F</color>
-    <color name="color_5">#DF000F</color>
+    <color name="color_5">#1E90FF</color>
     <color name="color_6">#DF000F</color>
-    <color name="color_7">#DF000F</color>
+    <color name="color_7">#FFFF00</color>
     <color name="color_8">#DF000F</color>
     <color name="color_9">#DF000F</color>
     <color name="color_10">#673AB7</color>
@@ -24,4 +24,5 @@
     <color name="grey500">#9E9E9E</color>
     <color name="transparent">#00000000</color>
     <color name="text_selected">#888</color>
+    <color name="black">#000000</color>
 </resources>

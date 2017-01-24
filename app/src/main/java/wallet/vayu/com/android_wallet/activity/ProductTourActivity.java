@@ -18,9 +18,10 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.nineoldandroids.view.ViewHelper;
+
 import wallet.vayu.com.android_wallet.R;
 import wallet.vayu.com.android_wallet.adapter.ProductTourFragment;
-import com.nineoldandroids.view.ViewHelper;
 
 public class ProductTourActivity extends AppCompatActivity {
 

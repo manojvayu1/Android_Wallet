@@ -1,32 +1,38 @@
 package wallet.vayu.com.android_wallet.activity;
 
+import android.app.Activity;
 import android.app.WallpaperManager;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteException;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
-import com.loopeer.cardstack.AllMoveDownAnimatorAdapter;
 import com.loopeer.cardstack.CardStackView;
-import com.loopeer.cardstack.UpDownAnimatorAdapter;
-import com.loopeer.cardstack.UpDownStackAnimatorAdapter;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
 
 import wallet.vayu.com.android_wallet.R;
 import wallet.vayu.com.android_wallet.adapter.RecyclerAdapter;
@@ -44,13 +50,18 @@ public class Card_activity extends AppCompatActivity implements CardStackView.It
             R.color.color_8,
             R.color.color_9,
             R.color.color_10,
+            R.color.color_11,
             R.color.color_12,
             R.color.color_13,
-            R.color.color_14
+            R.color.color_14,
+            R.color.color_15
     };
 
     private CardStackView mStackView;
     private RecyclerAdapter mTestStackAdapter;
+    private ImageView iv_logout, iv_plus;
+    private SharedPreferences sp;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +74,83 @@ public class Card_activity extends AppCompatActivity implements CardStackView.It
         drawable.setColorFilter(ContextCompat.getColor(getBaseContext(), R.color.color_15), PorterDuff.Mode.LIGHTEN);
         ll.setBackground(drawable);
         mStackView = (CardStackView) findViewById(R.id.stackview);
+        iv_logout = (ImageView) findViewById(R.id.logout);
+        iv_plus = (ImageView) findViewById(R.id.plus_btn);
+
+        iv_plus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder alertlayout = new AlertDialog.Builder(Card_activity.this);
+                WindowManager manager = (WindowManager) getSystemService(Activity.WINDOW_SERVICE);
+                View view1 = getLayoutInflater().inflate(R.layout.add_cards_activity, null);
+                alertlayout.setView(view1);
+                final AlertDialog dialog = alertlayout.create();
+                dialog.getWindow().getAttributes().windowAnimations = R.style.DialogTheme;
+                WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+                lp.copyFrom(dialog.getWindow().getAttributes());
+                lp.width = manager.getDefaultDisplay().getWidth();
+                lp.height = manager.getDefaultDisplay().getHeight();
+                lp.flags = WindowManager.LayoutParams.FLAG_DIM_BEHIND;
+                dialog.getWindow().setAttributes(lp);
+                dialog.show();
+            }
+        });
+
+        iv_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LayoutInflater layoutInflater = LayoutInflater.from(Card_activity.this);
+                View view = layoutInflater.inflate(R.layout.shoppopup, null);
+                final PopupWindow popupWindow = new PopupWindow(view, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
+                popupWindow.setContentView(view);
+                popupWindow.setBackgroundDrawable(new ColorDrawable(Color.WHITE));
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    popupWindow.setElevation(25);
+                }
+                popupWindow.showAsDropDown(iv_logout);
+                popupWindow.setOutsideTouchable(true);
+                popupWindow.setFocusable(true);
+                TextView tv_edit_aadhar = (TextView) view.findViewById(R.id.tv_edit_aadhar_card);
+                TextView tv_edit_pan = (TextView) view.findViewById(R.id.tv_Pancard_edit);
+                TextView tv_logout = (TextView) view.findViewById(R.id.tv_logout);
+                tv_edit_aadhar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        startActivity(new Intent(Card_activity.this, AadharCard_Activity.class));
+                        overridePendingTransition(R.anim.fade_in, R.anim.slide_up);
+                    }
+                });
+                tv_edit_pan.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        startActivity(new Intent(Card_activity.this, PanCard_Activity.class));
+                        overridePendingTransition(R.anim.fade_in, R.anim.slide_up);
+                    }
+                });
+
+                tv_logout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        sp = getSharedPreferences("MyPref", 0);
+                        SharedPreferences.Editor editor = sp.edit();
+                        editor.putString("name", "");
+                        editor.putString("mail", "");
+                        editor.putString("mpin", "");
+                        editor.putString("pan_num", "");
+                        editor.putString("pan_name", "");
+                        editor.putString("pan_img", "");
+                        editor.putString("aad_num", "");
+                        editor.putString("aad_name", "");
+                        editor.putString("aad_address", "");
+                        editor.putString("aadhar_img", "");
+                        editor.commit();
+                        finish();
+                        startActivity(new Intent(Card_activity.this, Login_Activity.class));
+                        overridePendingTransition(R.anim.fade_in, R.anim.slide_up);
+                    }
+                });
+            }
+        });
         mStackView.setItemExpendListener(this);
         mTestStackAdapter = new RecyclerAdapter(this);
         mStackView.setAdapter(mTestStackAdapter);
@@ -73,7 +161,7 @@ public class Card_activity extends AppCompatActivity implements CardStackView.It
         try {
             Uri uri = Uri.parse(SMS_URI_INBOX);
             String[] projection = new String[]{"_id", "address", "person", "body", "date", "type"};
-            Cursor cur = getContentResolver().query(uri, projection, "address='AD-BMSHOW'", null, "date desc");
+            Cursor cur = getContentResolver().query(uri, projection, "address=VK-BMSHOW", null, "date desc");
             if (cur.moveToFirst()) {
                 int index_Address = cur.getColumnIndex("address");
                 int index_Person = cur.getColumnIndex("person");
@@ -113,23 +201,17 @@ public class Card_activity extends AppCompatActivity implements CardStackView.It
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_actions, menu);
-        return super.onCreateOptionsMenu(menu);
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.shopsactmenu, menu);
+        return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_all_down:
-                mStackView.setAnimatorAdapter(new AllMoveDownAnimatorAdapter(mStackView));
-                break;
-            case R.id.menu_up_down:
-                mStackView.setAnimatorAdapter(new UpDownAnimatorAdapter(mStackView));
-                break;
-            case R.id.menu_up_down_stack:
-                mStackView.setAnimatorAdapter(new UpDownStackAnimatorAdapter(mStackView));
-                break;
-        }
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
         return super.onOptionsItemSelected(item);
     }
 

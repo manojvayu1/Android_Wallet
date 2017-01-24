@@ -1,19 +1,13 @@
 package wallet.vayu.com.android_wallet.activity;
 
-import android.app.WallpaperManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
-
 
 import wallet.vayu.com.android_wallet.R;
 

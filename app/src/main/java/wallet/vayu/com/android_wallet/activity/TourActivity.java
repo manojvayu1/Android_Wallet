@@ -6,10 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import wallet.vayu.com.android_wallet.R;
-
 import wallet.vayu.com.android_wallet.Constants.PrefConstants;
 import wallet.vayu.com.android_wallet.Constants.SAppUtil;
+import wallet.vayu.com.android_wallet.R;
 
 
 public class TourActivity extends AppCompatActivity {

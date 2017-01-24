@@ -15,21 +15,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.loopeer.cardstack.CardStackView;
 import com.loopeer.cardstack.StackAdapter;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
 import wallet.vayu.com.android_wallet.R;
-
-import static android.R.attr.bitmap;
-import static android.R.attr.text;
 
 public class RecyclerAdapter extends StackAdapter<Integer> {
 
@@ -256,8 +250,6 @@ public class RecyclerAdapter extends StackAdapter<Integer> {
             AAd_name.setText(aad_nam);
             AAd_address.setText(aad_addr);
         }
-
-
     }
 
 }
